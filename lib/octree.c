@@ -279,7 +279,8 @@ int bkr_octree_calculate_color_stats(bkr_octree_node* node, bkr_color_stats stat
     }
 
     int _count = 0;
-    for(int i = 0; i < 8; i++)
+    int i;
+    for(i = 0; i < 8; i++)
     {
         if(NULL != node->children[i])
         {
