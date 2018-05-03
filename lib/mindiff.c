@@ -72,7 +72,8 @@ int32_t _bkr_find_mindiff(bkr_rgb* a, _bkr_palette_stats* palette, uint32_t pale
     uint32_t temp_diff   = 0;
     int32_t min_diff_idx = -1;
 
-    for(uint32_t i = 0; i < palette_count; i++)
+    uint32_t i;
+    for(i = 0; i < palette_count; i++)
     {
         temp_diff = _bkr_diff_square(a, palette[i].color);
 
@@ -91,7 +92,8 @@ static inline int _bkr_mindiff_calc(bkr_rgb* pixels, uint32_t pixel_count, int16
 {
     int32_t index;
     _bkr_palette_stats* current_palette;
-    for(uint32_t i = 0; i < pixel_count; i++)
+    uint32_t i;
+    for(i = 0; i < pixel_count; i++)
     {
         // get current palette and the neareast one
         // color.
@@ -102,14 +104,14 @@ static inline int _bkr_mindiff_calc(bkr_rgb* pixels, uint32_t pixel_count, int16
 
     // get answer!
     int answer_count = 0;
-    for(uint32_t i = 0; i < colored_count; i++)
+    for(i = 0; i < colored_count; i++)
     {
         if(!colored[i].count) continue;
         memcpy(&stats[answer_count].color, (colored[i].color), bkr_rgb_size);
         stats[answer_count].value   = BKR_RGB_TO_INT32(colored[i].color->red, colored[i].color->green, colored[i].color->blue);
         stats[answer_count++].count = colored[i].count;
     }
-    for(uint32_t i = 0; i < grayed_count; i++)
+    for(i = 0; i < grayed_count; i++)
     {
         if(!grayed[i].count) continue;
         memcpy(&stats[answer_count].color, (grayed[i].color), bkr_rgb_size);
@@ -149,7 +151,8 @@ uint8_t _bkr_generate_colored_and_gray_pelette(bkr_palette_array* palette, _bkr_
     {
         // if gray offset is unlimit, all
         // colors are to go to `color_palette`
-        for(uint32_t i = 0; i < palette->count; i++)
+        uint32_t i;
+        for(i = 0; i < palette->count; i++)
         {
             colored[i].color = palette->colors + i;
             colored[i].count = 0;
@@ -162,7 +165,8 @@ uint8_t _bkr_generate_colored_and_gray_pelette(bkr_palette_array* palette, _bkr_
         // otherwise, separate `color_palette`
         // and `gray_palette`
         bkr_rgb* temp_palette = palette->colors;
-        for(uint32_t i = 0; i < palette->count; i++)
+        uint32_t i;
+        for(i = 0; i < palette->count; i++)
         {
             if(temp_palette[i].blue == temp_palette[i].red &&
                     temp_palette[i].red == temp_palette[i].green)

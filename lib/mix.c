@@ -73,7 +73,8 @@ static inline int _bkr_true_mix_calculate(bkr_color_stats octree_stats[], uint32
 {
     int32_t index;
     _bkr_palette_stats* current_palette;
-    for(uint32_t i = 0; i < octree_stats_count; i++)
+    uint32_t i;
+    for(i = 0; i < octree_stats_count; i++)
     {
         // get current palette and the neareast one
         // color.
@@ -85,14 +86,14 @@ static inline int _bkr_true_mix_calculate(bkr_color_stats octree_stats[], uint32
 
     // get answer!
     int answer_count = 0;
-    for(uint32_t i = 0; i < colored_count; i++)
+    for(i = 0; i < colored_count; i++)
     {
         if(!colored[i].count) continue;
         memcpy(&stats[answer_count].color, (colored[i].color), bkr_rgb_size);
         stats[answer_count].value   = BKR_RGB_TO_INT32(colored[i].color->red, colored[i].color->green, colored[i].color->blue);
         stats[answer_count++].count = colored[i].count;
     }
-    for(uint32_t i = 0; i < grayed_count; i++)
+    for(i = 0; i < grayed_count; i++)
     {
         if(!grayed[i].count) continue;
         memcpy(&stats[answer_count].color, (grayed[i].color), bkr_rgb_size);
